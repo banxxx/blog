@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Banxx
-avatar: 'https://coscdn.banxx.cn/Blog/09.png'
+title: Banxx's Blog
+avatar: 'https://cos.banxx.cn/Blog/20231203184648.png'
 favicon: 'https://coscdn.banxx.cn/Blog/67.png'
 subtitle: ''
 description: ''
@@ -13,12 +13,16 @@ author: Banxx
 language:
   - zh-CN
   - en
+  - zh-TW
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://blog.banxx.cn
-permalink: :year/:month/:day/:title/
+permalink: :abbrlink/
+abbrlink:
+  alg: crc32 #算法： crc16(default) and crc32
+  rep: hex #进制： dec(default) and hex
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -47,17 +51,25 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-syntax_highlighter: highlight.js
+syntax_highlighter: prismjs
 highlight:
-  line_number: true
+  enable: false
+  line_number: false
+  line_threshold: 0
   auto_detect: false
   tab_replace: ''
-  wrap: true
-  hljs: false
+  exclude_languages:
+    - example
+  wrap: false
+  hljs: true
+# inject:
+#   head:
+#     - <link rel="stylesheet" href="https://cos.banxx.cn/Blog/nord.css">
 prismjs:
   preprocess: true
   line_number: true
   tab_replace: ''
+  line_threshold: 0
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
