@@ -1,0 +1,26 @@
+name: 探索者手记
+title: 探索者手记
+sidebar: 
+  - layout: search
+    override: search
+    filter: /notes/
+    placeholder: 在此处搜索...
+  - toc
+
+comments:
+  giscus:
+    'data-term': '23'
+    'data-mapping': number
+
+path: /notes/
+toc:
+  '日常问题解决方案':
+    - mac
+  '移动端开发笔记':
+    - ios
+    - flutter
+  '前端学习笔记':
+    - nodejs
+    - server
+  '在线工具':
+    - json
