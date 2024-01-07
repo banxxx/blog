@@ -1,12 +1,17 @@
 ---
 title: 自建jar工具包推送至Maven中央仓库
 tags:
-  - java
-  - maven
+  - Java
+  - Maven
 categories:
-  - JAVA相关
+  - 后端
 abbrlink: f5f6bbca
 date: 2023-12-01 11:29:15
+cover: /assets/image/BE025.jpg
+poster: # 海报（可选，全图封面卡片）
+  headline: 自建jar工具包推送至Maven中央仓库
+  caption: 本篇文章详细介绍如何自建java工具包并推送至maven中央仓库供所有人引入使用
+  color: white
 ---
 
 本篇文章详细介绍如何自建java工具包并推送至maven中央仓库供所有人引入使用
@@ -16,18 +21,18 @@ date: 2023-12-01 11:29:15
 密码要求比较高,大小写数字符号啥的都要有,注意做好备份
 ## 2. 创建Issue
 用上面创建的账号密码登录后,点击页面上方导航栏的Create按钮创建工单Issue:
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_02-13-51.png)
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_02-17-09.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_02-13-51.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_02-17-09.png)
 通过以上两个步骤,你的工单就被创建完成了,接下来就耐心等待工作人员审核,注意留意你注册账号时填写的邮箱,回复内容会在邮箱里通知你.
 ## 3. 确认邮件
 在收到工作人员的确认邮件后,在邮件内容中他们通常会要求验证你填写的groupId中的域名或github账户是不是你本人的
 + 如果你填写的是域名,他们会要去你用该域名的邮箱给他们发一封邮件进行确认
 + 如果你填写的是github账户,他们会要求你在你的github中创建一个指定名称的仓库进行验证(如下图,按要求去创建即可)
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_18-59-49.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_18-59-49.png)
 创建好并确认无误后,你需要将此Iusse的状态置为Open,然后他们系统会自动去完成验证.
 ## 4.上传至中央仓库
 官方验证此域名/账户确实是你本人的之后,会再次发送邮件给你,告诉你你的仓库已经被激活了,此时你需要按照他们的要求,分别上传你项目的SNAPSHOT和release版本至指定地址:
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_19-03-47.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_19-03-47.png)
 ### 4.1 上传SNAPSHOT版本的步骤
 如果步骤走不下去,请务必查阅官方文档,以官方文档为准,因为可能会有更新.需要一定的英文文档阅读能力,如果英文不好可以使用谷歌翻译及其他插件.
 参考文档地址: [OSSRH Guide - The Central Repository Documentation](https://central.sonatype.org/publish/publish-guide/#deployment)
@@ -81,18 +86,18 @@ gpg:              unchanged: 1
 
 ##### b. 应用程序的方式
 先去GPG官网下载windows版本应用
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_20-27-52.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_20-27-52.png)
 打开应用软件,按图所示
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_20-35-07.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_20-35-07.png)
 新建密钥对成功后,将密钥对发送至服务器上
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_20-38-47.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_20-38-47.png)
 等待一会后在服务器上查找,找到证书即为成功,然后将此证书导出
 
 
 #### 2. 配置settings.xml
 找到你IDEA自带或者你安装的Maven所在的目录:
 File->settings->Build->Maven->MavenHomePath,进入此目录在conf文件夹下就可以看到settings.xml文件,如果没有的话可以自己新建一个.
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_19-36-47.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_19-36-47.png)
 然后在其中加入配置:
 ```XML
   <servers>
@@ -252,10 +257,10 @@ File->settings->Build->Maven->MavenHomePath,进入此目录在conf文件夹下�
     </profiles>
 ```
 完成上述配置,你已经基本上走完了80%的步骤了,此时,你可以通过Maven尝试打包一下你的项目:
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_19-45-10.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_19-45-10.png)
 #### 4. 上传
 接着点击{% emp clean %},{% emp deploy %}然后会弹出对话框让你输入生成gpg时填写的密码,然后弹出的确认对话框都敲回车,耐心等待上传,完成后你可以在控制台看到SUCCESS,至此,SNAPSHOT版本已被上传至中央SNAPSHOT仓库,可以在浏览器访问[Nexus Repository Manager](https://s01.oss.sonatype.org/#welcome),登录后查看.
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_19-46-59.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_19-46-59.png)
 
 ### 4.2 上传release版本的步骤
 整体流程和上传SNAPSHOT版本一致,下面仅贴出差异点:
@@ -265,7 +270,7 @@ File->settings->Build->Maven->MavenHomePath,进入此目录在conf文件夹下�
 <id>release</id>
 ```
 如下图
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_19-57-57.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_19-57-57.png)
 #### 2. pom.xml
 ```XML
 <!--修改GAV中的版本号,把SNAPSHOT后缀去掉-->
@@ -303,9 +308,9 @@ File->settings->Build->Maven->MavenHomePath,进入此目录在conf文件夹下�
 点击clean,deploy 然后耐心等待成功,因为这是你第一次上传release包至中央仓库,
 所以他们平台的机器人会自动帮你同步(在他们回复你的ISSUE里也提到了这点,同步触发的前提是SNAPSHOT和release版本都已正确上传至中央仓库)
 上传成功后,可在官网查看到:
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_20-06-49.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_20-06-49.png)
 在完成了SNAPSHOT和release版本上传之后,你会收到系统发来的邮件:
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_20-10-00.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_20-10-00.png)
 大致就是告诉你你已经成功完成了首次上传,你上传的项目会在30分钟以内同步到中央仓库中,
 届时你可以在Central Repository:中找和下载.
 4小时内你可以在  Maven Central Repository Search中搜索到.
@@ -316,5 +321,5 @@ File->settings->Build->Maven->MavenHomePath,进入此目录在conf文件夹下�
 直接上传release版本至中央仓库,由于非首次发布,他们的机器人也不再会帮助你自动同步了,
 此过程需要你手动触发,在上传完release包之后,打开官方页面,进入操作,具体流程如下图:
 [Nexus Repository Manager](https://s01.oss.sonatype.org/#welcome)
-![](https://cos.banxx.cn/Blog/PixPin_2023-12-03_20-19-22.png)
+![](https://coscdn.banxx.cn/blog/PixPin_2023-12-03_20-19-22.png)
 

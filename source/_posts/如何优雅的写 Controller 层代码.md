@@ -1,7 +1,14 @@
 ---
+cover: /assets/image/BE005.jpg
+poster: # 海报（可选，全图封面卡片）
+  headline: 如何优雅的写 Controller 层代码
+  caption: 本篇主要介绍的就是 controller 层的处理
+  color: white
 title: 如何优雅的写 Controller 层代码
 tags:
-  - java
+  - Java
+categories:
+  - 后端
 abbrlink: 9359dcb
 date: 2023-12-22 16:40:15
 ---
@@ -53,15 +60,18 @@ RestController：之前解释过，@RestController=@Controller+ResponseBody。
 %}
   
 {% note
-@RequestMapping：请求的前缀，也就是所有该 Controller 下的请求都需要加上 /product/product-info 的前缀。
+@RequestMapping
+请求的前缀，也就是所有该 Controller 下的请求都需要加上 /product/product-info 的前缀。
 %}
 
 {% note
-@GetMapping("/findById")：标志这是一个 get 请求，并且需要通过 /findById 地址才可以访问到。
+@GetMapping("/findById")
+标志这是一个 get 请求，并且需要通过 /findById 地址才可以访问到。
 %}
   
 {% note
-@PostMapping("/page")：同理，表示是个 post 请求。
+@PostMapping("/page")
+同理，表示是个 post 请求。
 %}
 
 参数：至于参数部分，只需要写上 ProductInfoQueryVo，前端过来的 json 请求便会通过映射赋值到对应的对象中，例如请求这么写，productId 就会自动被映射到 vo 对应的属性当中。
@@ -74,7 +84,7 @@ RestController：之前解释过，@RestController=@Controller+ResponseBody。
 
 如果你不封装，那么返回的数据是这样子的：
 
-```java
+```json
 {  
   "productId": 1,  
   "productName": "泡脚",  
@@ -86,7 +96,7 @@ RestController：之前解释过，@RestController=@Controller+ResponseBody。
 
 经过封装以后时这样子的：
 
-```java
+```json
 {  
   "code": 1000,  
   "msg": "请求成功",  
@@ -136,24 +146,24 @@ public enum ResultCode implements StatusCode{
 3. 写好枚举类，就开始写 ResultVo 包装类了，我们预设了几种默认的方法，比如成功的话就默认传入 object 就可以了，我们自动包装成 success。
 
 ```java
-@Data  
-public class ResultVo {  
-    // 状态码  
-    private int code;  
-  
-    // 状态信息  
-    private String msg;  
-  
-    // 返回对象  
-    private Object data;  
-  
-    // 手动设置返回vo  
-    public ResultVo(int code, String msg, Object data) {  
-        this.code = code;  
-        this.msg = msg;  
-        this.data = data;  
-    }  
-  
+@Data
+public class ResultVo {
+    // 状态码
+    private int code;
+
+    // 状态信息
+    private String msg;
+
+    // 返回对象
+    private Object data;
+
+    // 手动设置返回vo
+    public ResultVo(int code, String msg, Object data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
     // 默认返回成功状态码，数据对象  
     public ResultVo(Object data) {  
         this.code = ResultCode.SUCCESS.getCode();  
@@ -259,7 +269,7 @@ productPrice : -1
 productStatus : 1
 ```
 
-```java
+```json
 {  
   "timestamp": "2020-04-19T03:06:37.268+0000",  
   "status": 400,  
@@ -330,7 +340,7 @@ public class ControllerExceptionAdvice {
 
 来看看效果，完美。1002 与前端约定好的状态码：
 
-```java
+```json
 {  
   "code": 1002,  
   "msg": "参数校验失败",  
@@ -397,7 +407,7 @@ public ProductInfo findByVo(@Validated ProductInfoVo vo) {
 
 此时就算我们返回的是 po，接收到的返回就是标准格式了。
 
-```java
+```json
 {
   "code": 1000,
   "msg": "请求成功",
@@ -426,7 +436,7 @@ public class HealthController {
 }
 ```
 人家要的返回不是：
-```java
+```json
 {  
   "code": 1000,  
   "msg": "请求成功",  
@@ -556,7 +566,7 @@ if (null == orderMaster) {
 }
 ```
 
-```java
+```json
 {  
   "code": 2003,  
   "msg": "订单不存在",  

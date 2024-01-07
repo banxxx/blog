@@ -1,9 +1,16 @@
 ---
 abbrlink: 5d0555f2
-title: java获取农历日期
+title: Java获取农历日期
 tags:
-  - java
-date:
+  - Java
+categories:
+  - 后端
+date: 2023-12-10 11:29:15
+cover: /assets/image/BE022.jpg
+poster:
+  headline: Java获取农历日期
+  caption: 本篇主要介绍的是在Java中通过传入时间获取农历日期
+  color: white
 ---
 在Java中通过传入时间获取农历日期
 <!-- more -->

@@ -4,8 +4,8 @@
 
 # Site
 title: Banxx's Blog
-avatar: 'https://cos.banxx.cn/Blog/20231203184648.png'
-favicon: 'https://coscdn.banxx.cn/Blog/67.png'
+avatar: 'https://coscdn.banxx.cn/blog/head.png'
+favicon: 'https://coscdn.banxx.cn/blog/head.png'
 subtitle: ''
 description: ''
 keywords:
@@ -52,24 +52,27 @@ post_asset_folder: false
 relative_link: false
 future: true
 syntax_highlighter: prismjs
+
 highlight:
   enable: false
   line_number: false
-  line_threshold: 0
   auto_detect: false
-  tab_replace: ''
-  exclude_languages:
-    - example
+  tab_replace: '    '
   wrap: false
   hljs: true
-# inject:
-#   head:
-#     - <link rel="stylesheet" href="https://cos.banxx.cn/Blog/nord.css">
+
 prismjs:
   preprocess: true
   line_number: true
   tab_replace: ''
   line_threshold: 0
+
+# prism_plugin:
+#   mode: 'realtime'    # realtime/preprocess
+#   theme: 'default'
+#   line_number: true    # default false
+#   custom_css: 'prism/prism.css'     # optional
+#   prism: coy
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -121,3 +124,30 @@ deploy:
   repository: ban@110.40.158.229:/home/git/blog.git   #用户名@服务器Ip:git仓库位置
   branch: master
 
+inject:
+  head:
+    - <link rel="stylesheet" href="/js/prism/prism.css">
+    - <script src="/js/prism/prism.js" async></script>
+    - <link rel="stylesheet" href="/css/dark/dark.css"> # 黑夜样式
+    - <script type="text/javascript" src="/css/dark/dark_light.js"></script>
+    # - <link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.5.0/build/styles/atom-one-dark.min.css">
+  script:
+    - <script type="text/javascript" src="/css/dark/dark.js"></script> # 黑夜控制
+
+# hexo-neat 优化提速插件（去掉HTML、css、js的blank字符）
+neat_enable: true
+neat_html:
+  enable: true
+  exclude:
+    - '**/*.md'
+neat_css:
+  enable: true
+  exclude:
+    - '**/*.min.css'
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '**/*.min.js'
