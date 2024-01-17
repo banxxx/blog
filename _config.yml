@@ -151,3 +151,9 @@ neat_js:
   compress:
   exclude:
     - '**/*.min.js'
+
+Plugins:
+- hexo-generator-sitemap
+
+sitemap:
+    path: sitemap.xml
