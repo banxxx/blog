@@ -1,0 +1,3 @@
+services:
+  siteinfo:
+    api: https://api.vlts.cc/site_info/v1?url=https://blog.banxx.cn
